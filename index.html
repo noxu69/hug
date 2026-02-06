@@ -20,6 +20,30 @@ body {
   color: white;
 }
 
+/* VIGNETTE */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  box-shadow: inset 0 0 120px rgba(0,0,0,0.8);
+  pointer-events: none;
+}
+
+/* STARS */
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  opacity: 0.6;
+  animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.2; }
+  to { opacity: 1; }
+}
+
 /* CARD */
 .card {
   background: rgba(255,255,255,0.08);
@@ -39,11 +63,16 @@ h1 {
   margin: 10px 0;
 }
 
+.name {
+  color: #ff4d6d;
+  text-shadow: 0 0 15px #ff4d6d;
+}
+
 /* TYPEWRITER */
 #typewriter {
   font-size: 1.1em;
   line-height: 1.6;
-  min-height: 150px;
+  min-height: 160px;
   margin-top: 15px;
 }
 
@@ -71,18 +100,31 @@ button:hover {
   margin-top: 20px;
   opacity: 0;
   animation: beat 1s infinite;
+  position: relative;
 }
 
-.show {
-  opacity: 1;
-}
+.show { opacity: 1; }
 
 @keyframes beat {
   0% { transform: scale(1); text-shadow: 0 0 10px #ff4d6d; }
-  25% { transform: scale(1.25); text-shadow: 0 0 25px #ff1e56; }
+  25% { transform: scale(1.3); text-shadow: 0 0 30px #ff1e56; }
   50% { transform: scale(1); }
   75% { transform: scale(1.15); }
   100% { transform: scale(1); }
+}
+
+/* SPARKLES */
+.sparkle {
+  position: absolute;
+  font-size: 14px;
+  animation: sparkle 1.5s ease-out forwards;
+}
+
+@keyframes sparkle {
+  to {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
 }
 
 /* ROSE BLOOM */
@@ -93,7 +135,6 @@ button:hover {
   width: 120px;
   height: 120px;
   transform: translateX(-50%);
-  animation: bloom 3s ease forwards;
 }
 
 .petal {
@@ -125,13 +166,7 @@ button:hover {
   border-radius: 10px;
 }
 
-@keyframes bloom {
-  to { transform: translateX(-50%) scale(1.1); }
-}
-
-@keyframes open {
-  to { opacity: 1; }
-}
+@keyframes open { to { opacity: 1; } }
 
 /* FALLING ROSES */
 .falling {
@@ -146,9 +181,11 @@ button:hover {
   to { transform: translateY(110vh) rotate(360deg); }
 }
 
-@keyframes fadeIn {
-  from {opacity: 0; transform: scale(0.9);}
-  to {opacity: 1; transform: scale(1);}
+/* VOLUME */
+.volume {
+  margin-top: 10px;
+  font-size: 0.8em;
+  opacity: 0.7;
 }
 </style>
 </head>
@@ -156,29 +193,29 @@ button:hover {
 <body>
 
 <div class="card">
-  <h1>Happy Rose Day, Ritija 🌹</h1>
+  <h1>Happy Rose Day, <span class="name">Ritija</span> 🌹</h1>
 
   <div id="typewriter"></div>
 
   <div id="heart">❤️</div>
 
   <button onclick="startSurprise()">Tap here 💌</button>
+
+  <div class="volume">
+    Music
+    <input type="range" min="0" max="1" step="0.01" value="0.4"
+      onchange="music.volume=this.value">
+  </div>
 </div>
 
-<!-- BLOOMING ROSE -->
 <div class="rose">
-  <div class="petal p1"></div>
-  <div class="petal p2"></div>
-  <div class="petal p3"></div>
-  <div class="petal p4"></div>
-  <div class="petal p5"></div>
-  <div class="petal p6"></div>
+  <div class="petal p1"></div><div class="petal p2"></div><div class="petal p3"></div>
+  <div class="petal p4"></div><div class="petal p5"></div><div class="petal p6"></div>
   <div class="stem"></div>
 </div>
 
-<!-- MUSIC -->
 <audio id="music" loop>
-  <source src="https://cdn.pixabay.com/audio/2023/03/02/audio_0c2c8d2f6c.mp3" type="audio/mpeg">
+  <source src="https://cdn.pixabay.com/audio/2023/03/02/audio_0c2c8d2f6c.mp3">
 </audio>
 
 <script>
@@ -195,39 +232,62 @@ this one would smile.
 
 For you — today and always.`;
 
-let index = 0;
-let started = false;
+let i = 0, started = false;
+const music = document.getElementById("music");
 
 function startSurprise() {
   if (started) return;
   started = true;
-
-  document.getElementById("music").play();
-  typeEffect();
-  fallingRoses();
+  music.volume = 0.4;
+  music.play();
+  type();
+  roses();
+  stars();
 }
 
-function typeEffect() {
-  if (index < text.length) {
+function type() {
+  if (i < text.length) {
     document.getElementById("typewriter").innerHTML +=
-      text.charAt(index) === "\n" ? "<br>" : text.charAt(index);
-    index++;
-    setTimeout(typeEffect, 45);
+      text[i] === "\n" ? "<br>" : text[i];
+    i++;
+    setTimeout(type, 45);
   } else {
     document.getElementById("heart").classList.add("show");
+    setInterval(sparkles, 400);
   }
 }
 
-function fallingRoses() {
+function roses() {
   setInterval(() => {
-    const rose = document.createElement("div");
-    rose.className = "falling";
-    rose.innerHTML = "🌹";
-    rose.style.left = Math.random() * 100 + "vw";
-    rose.style.animationDuration = (Math.random() * 4 + 4) + "s";
-    document.body.appendChild(rose);
-    setTimeout(() => rose.remove(), 8000);
-  }, 400);
+    let r = document.createElement("div");
+    r.className = "falling";
+    r.innerHTML = "🌹";
+    r.style.left = Math.random()*100 + "vw";
+    r.style.animationDuration = (Math.random()*4+4)+"s";
+    document.body.appendChild(r);
+    setTimeout(()=>r.remove(),8000);
+  }, 500);
+}
+
+function stars() {
+  for (let s=0; s<60; s++) {
+    let star = document.createElement("div");
+    star.className = "star";
+    star.style.left = Math.random()*100+"vw";
+    star.style.top = Math.random()*100+"vh";
+    star.style.animationDuration = (Math.random()*3+2)+"s";
+    document.body.appendChild(star);
+  }
+}
+
+function sparkles() {
+  let sp = document.createElement("div");
+  sp.className = "sparkle";
+  sp.innerHTML = "✨";
+  sp.style.left = (heart.offsetLeft + Math.random()*40 - 20)+"px";
+  sp.style.top = (heart.offsetTop)+"px";
+  document.body.appendChild(sp);
+  setTimeout(()=>sp.remove(),1500);
 }
 </script>
 
