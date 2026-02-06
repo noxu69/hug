@@ -42,52 +42,55 @@ body {
 .card {
   background: rgba(255,255,255,0.08);
   backdrop-filter: blur(14px);
-  border-radius: 22px;
-  padding: 40px;
+  border-radius: 24px;
+  padding: 45px 35px;
   text-align: center;
   width: 90%;
-  max-width: 420px;
+  max-width: 440px;
   box-shadow: 0 30px 60px rgba(0,0,0,0.6);
 }
 
+/* TEXT */
 h1 {
-  font-size: 2em;
+  font-size: 2.3em;
+  margin-bottom: 10px;
+}
+
+.big-text {
+  font-size: 1.35em;
+  line-height: 1.8;
+  margin-top: 10px;
 }
 
 .name {
   color: #ff4d6d;
-  text-shadow: 0 0 15px #ff4d6d;
+  text-shadow: 0 0 18px #ff4d6d;
 }
 
+/* BUTTON */
 button {
-  margin-top: 25px;
-  padding: 12px 30px;
+  margin-top: 30px;
+  padding: 14px 36px;
   border: none;
   border-radius: 30px;
   background: #ff4d6d;
   color: white;
-  font-size: 1em;
+  font-size: 1.05em;
   cursor: pointer;
   transition: 0.3s;
 }
 
 button:hover {
   transform: scale(1.08);
-  box-shadow: 0 0 18px #ff4d6d;
-}
-
-/* TYPEWRITER */
-#typewriter {
-  font-size: 1.1em;
-  line-height: 1.6;
-  min-height: 150px;
+  box-shadow: 0 0 20px #ff4d6d;
 }
 
 /* HEART */
 #heart {
-  font-size: 4em;
+  font-size: 4.5em;
+  margin-top: 25px;
   animation: beat 1s infinite;
-  text-shadow: 0 0 20px #ff4d6d;
+  text-shadow: 0 0 25px #ff4d6d;
 }
 
 @keyframes beat {
@@ -103,7 +106,7 @@ button:hover {
   position: relative;
   width: 120px;
   height: 120px;
-  margin: auto;
+  margin: 25px auto;
 }
 
 .petal {
@@ -134,7 +137,10 @@ button:hover {
 <div class="slide active">
   <div class="card">
     <h1>Hey <span class="name">Ritija</span> 🌹</h1>
-    <p>There’s something I wanted to show you.</p>
+    <p class="big-text">
+      I made something special.<br>
+      Just for you.
+    </p>
     <button onclick="nextSlide()">Next 💌</button>
   </div>
 </div>
@@ -142,7 +148,11 @@ button:hover {
 <!-- SLIDE 2 -->
 <div class="slide">
   <div class="card">
-    <div id="typewriter"></div>
+    <p class="big-text">
+      Some people don’t even realize it,<br>
+      but their presence makes everything feel calmer,<br>
+      warmer, and better.
+    </p>
     <button onclick="nextSlide()">Next 💖</button>
   </div>
 </div>
@@ -150,12 +160,41 @@ button:hover {
 <!-- SLIDE 3 -->
 <div class="slide">
   <div class="card">
+    <p class="big-text">
+      You’re the kind of person<br>
+      who turns ordinary moments<br>
+      into memories without trying.
+    </p>
+    <button onclick="nextSlide()">Next 🌹</button>
+  </div>
+</div>
+
+<!-- SLIDE 4 -->
+<div class="slide">
+  <div class="card">
     <div class="rose">
       <div class="petal p1"></div><div class="petal p2"></div><div class="petal p3"></div>
       <div class="petal p4"></div><div class="petal p5"></div><div class="petal p6"></div>
     </div>
+    <p class="big-text">
+      So here’s a rose,<br>
+      not just as a flower,<br>
+      but as a feeling.
+    </p>
+    <button onclick="nextSlide()">Next ❤️</button>
+  </div>
+</div>
+
+<!-- SLIDE 5 (FINAL) -->
+<div class="slide">
+  <div class="card">
+    <h1>Happy Rose Day 🌹</h1>
     <div id="heart">❤️</div>
-    <p>For you — today and always.</p>
+    <p class="big-text">
+      I love you so much.<br>
+      Today, tomorrow,<br>
+      and a little more every day.
+    </p>
   </div>
 </div>
 
@@ -166,32 +205,16 @@ button:hover {
 <script>
 const slides = document.querySelectorAll(".slide");
 let current = 0;
-
-const text =
-`Ritija 🌹
-
-This rose is not just a flower.
-It’s a quiet reminder that
-some people make ordinary days
-feel special without trying.`;
-
-let i = 0;
+const music = document.getElementById("music");
 
 function nextSlide() {
   slides[current].classList.remove("active");
   current++;
   slides[current].classList.add("active");
 
-  if (current === 1) type();
-  if (current === 2) document.getElementById("music").play();
-}
-
-function type() {
-  if (i < text.length) {
-    document.getElementById("typewriter").innerHTML +=
-      text[i] === "\n" ? "<br>" : text[i];
-    i++;
-    setTimeout(type, 45);
+  if (current === 1) {
+    music.volume = 0.4;
+    music.play();
   }
 }
 </script>
