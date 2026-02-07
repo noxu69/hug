@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Propose Day 💍</title>
+<title>For Ritija 💍</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -11,7 +11,7 @@
 body{
   margin:0;
   height:100vh;
-  background:radial-gradient(circle at top,#1a0005,#000000);
+  background:radial-gradient(circle at top,#2b0a12,#000000);
   font-family:'Poppins',sans-serif;
   overflow:hidden;
   color:white;
@@ -20,23 +20,17 @@ body{
 /* STARS */
 .star{
   position:absolute;
-  width:2px;
-  height:2px;
+  width:2px;height:2px;
   background:white;
   opacity:0.7;
   animation:twinkle 2s infinite alternate;
 }
-
-@keyframes twinkle{
-  from{opacity:0.2;}
-  to{opacity:1;}
-}
+@keyframes twinkle{from{opacity:0.2;}to{opacity:1;}}
 
 /* SLIDES */
 .slide{
   position:absolute;
-  width:100%;
-  height:100%;
+  width:100%;height:100%;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -44,7 +38,6 @@ body{
   pointer-events:none;
   transition:opacity 1.2s ease;
 }
-
 .slide.active{
   opacity:1;
   pointer-events:auto;
@@ -52,24 +45,24 @@ body{
 
 /* CARD */
 .card{
-  background:rgba(255,255,255,0.06);
+  background:rgba(255,255,255,0.07);
   backdrop-filter:blur(18px);
-  border-radius:25px;
-  padding:55px 45px;
+  border-radius:28px;
+  padding:60px 45px;
   width:90%;
-  max-width:500px;
+  max-width:600px;
   text-align:center;
-  box-shadow:0 40px 80px rgba(0,0,0,0.8);
+  box-shadow:0 40px 90px rgba(0,0,0,0.8);
 }
 
 h1{
-  font-size:2.6em;
+  font-size:2.8em;
 }
 
 .big{
-  font-size:1.4em;
-  line-height:1.8;
-  margin-top:20px;
+  font-size:1.6em;
+  line-height:1.9;
+  margin-top:25px;
 }
 
 .name{
@@ -77,79 +70,59 @@ h1{
   text-shadow:0 0 25px #ff4d6d;
 }
 
-/* BUTTON */
+/* BUTTONS */
 button{
-  margin-top:30px;
-  padding:16px 45px;
+  margin-top:35px;
+  padding:18px 55px;
   border:none;
-  border-radius:40px;
-  background:#ff4d6d;
-  color:white;
-  font-size:1.1em;
+  border-radius:50px;
+  font-size:1.3em;
   cursor:pointer;
   transition:0.3s;
-}
-
-button:hover{
-  transform:scale(1.1);
-  box-shadow:0 0 20px #ff4d6d;
-}
-
-/* RING BOX */
-.ring-box{
-  width:120px;
-  height:80px;
-  background:#400000;
-  margin:30px auto;
-  border-radius:10px;
   position:relative;
-  transform-origin:bottom;
-  animation:openBox 2s forwards;
 }
 
-.ring{
+.next{
+  background:#ff4d6d;
+  color:white;
+}
+
+.yes{
+  background:#ff4d6d;
+  color:white;
+  margin:25px;
+  z-index:2;
+}
+
+.no{
+  background:white;
+  color:#ff4d6d;
+  margin:25px;
   position:absolute;
-  top:-30px;
-  left:50%;
-  transform:translateX(-50%);
-  font-size:3em;
-  opacity:0;
-  animation:showRing 2s 1.5s forwards;
 }
 
-@keyframes openBox{
-  0%{transform:rotateX(0);}
-  100%{transform:rotateX(-70deg);}
-}
-
-@keyframes showRing{
-  to{opacity:1; top:-50px;}
-}
-
-/* HEART CELEBRATION */
+/* HEART */
 #heart{
-  font-size:6em;
+  font-size:7em;
   animation:beat 1s infinite;
 }
-
 @keyframes beat{
   0%{transform:scale(1);}
-  25%{transform:scale(1.3);}
+  25%{transform:scale(1.35);}
   50%{transform:scale(1);}
-  75%{transform:scale(1.15);}
+  75%{transform:scale(1.2);}
   100%{transform:scale(1);}
 }
 
-/* CONFETTI */
-.confetti{
+/* FALLING HEARTS */
+.fall{
   position:absolute;
-  width:8px;
-  height:8px;
-  animation:confettiFall linear infinite;
+  top:-40px;
+  font-size:28px;
+  animation:fall linear infinite;
 }
-
-@keyframes confettiFall{
-  to{transform:translateY(110vh) rotate(720deg);}
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg);}
 }
 </style>
 </head>
@@ -159,12 +132,12 @@ button:hover{
 <!-- SLIDE 1 -->
 <div class="slide active">
   <div class="card">
-    <h1>Hey <span class="name">Ritija</span> 💖</h1>
+    <h1>Ritija 💖</h1>
     <p class="big">
-      Close your eyes for a second…<br>
-      And imagine our future together.
+      There are some people who walk into your life quietly…<br><br>
+      And somehow make everything feel softer, warmer, brighter.
     </p>
-    <button onclick="nextSlide()">Next 💌</button>
+    <button class="next" onclick="nextSlide()">Next 💌</button>
   </div>
 </div>
 
@@ -172,35 +145,56 @@ button:hover{
 <div class="slide">
   <div class="card">
     <p class="big">
-      Through every smile.<br>
-      Through every challenge.<br>
-      Through every ordinary day.
+      You are that person for me, Ritija.<br><br>
+      You make ordinary days feel special.<br>
+      You make simple moments unforgettable.<br><br>
+      And without even trying… you became my favorite person.
     </p>
-    <button onclick="nextSlide()">Next 🌹</button>
+    <button class="next" onclick="nextSlide()">Next 🌹</button>
   </div>
 </div>
 
-<!-- SLIDE 3 RING -->
+<!-- SLIDE 3 -->
 <div class="slide">
   <div class="card">
-    <div class="ring-box"></div>
-    <div class="ring">💍</div>
-    <h1>I Propose To You</h1>
     <p class="big">
-      Will you be my wife?
+      I don’t promise a perfect life…<br><br>
+      But I promise loyalty.<br>
+      I promise laughter.<br>
+      I promise choosing you — every single day.
     </p>
-    <button onclick="yesAnswer()">Yes 💖</button>
+    <button class="next" onclick="nextSlide()">Next 💍</button>
   </div>
 </div>
 
-<!-- SLIDE 4 CELEBRATION -->
+<!-- SLIDE 4 PROPOSAL -->
+<div class="slide">
+  <div class="card" id="proposalCard">
+    <h1 class="name">Ritija 💍</h1>
+    <p class="big">
+      From this moment…<br><br>
+      I don’t just want you in my present.<br>
+      I want you in my future.<br><br>
+      Will you be my wife?
+    </p>
+
+    <button class="yes" id="yesBtn" onclick="yesAnswer()">Yes 💖</button>
+    <button class="no" id="noBtn">No 😅</button>
+
+    <div id="response"></div>
+  </div>
+</div>
+
+<!-- SLIDE 5 CELEBRATION -->
 <div class="slide">
   <div class="card">
     <div id="heart">❤️</div>
-    <h1>She Said Yes! 💍</h1>
+    <h1 class="name">She Said Yes! 💍</h1>
     <p class="big">
-      You just made me the happiest person alive.<br>
-      Happy Propose Day 💖
+      Ritija…<br><br>
+      You just made me the happiest person alive.<br><br>
+      I love you so much.<br>
+      Today. Tomorrow. Always.
     </p>
   </div>
 </div>
@@ -213,6 +207,9 @@ button:hover{
 const slides=document.querySelectorAll(".slide");
 let current=0;
 const music=document.getElementById("music");
+const noBtn=document.getElementById("noBtn");
+const yesBtn=document.getElementById("yesBtn");
+let yesScale=1;
 
 function nextSlide(){
   slides[current].classList.remove("active");
@@ -224,28 +221,37 @@ function nextSlide(){
   }
 }
 
+/* NO RUNS AWAY + YES GROWS */
+noBtn.addEventListener("mouseover",()=>{
+  const x=Math.random()*400-200;
+  const y=Math.random()*250-125;
+  noBtn.style.transform=`translate(${x}px,${y}px)`;
+  yesScale+=0.2;
+  yesBtn.style.transform=`scale(${yesScale})`;
+});
+
+/* YES CLICK */
 function yesAnswer(){
   slides[current].classList.remove("active");
   current++;
   slides[current].classList.add("active");
-  confetti();
+  hearts();
 }
 
-function confetti(){
-  for(let i=0;i<120;i++){
-    const c=document.createElement("div");
-    c.className="confetti";
-    c.style.left=Math.random()*100+"vw";
-    c.style.top="-10px";
-    c.style.background=`hsl(${Math.random()*360},100%,50%)`;
-    c.style.animationDuration=(Math.random()*3+2)+"s";
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),5000);
-  }
+function hearts(){
+  setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="fall";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=(Math.random()*4+4)+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),8000);
+  },300);
 }
 
-/* CREATE STARS */
-for(let i=0;i<80;i++){
+/* STARS */
+for(let i=0;i<120;i++){
   const s=document.createElement("div");
   s.className="star";
   s.style.left=Math.random()*100+"vw";
