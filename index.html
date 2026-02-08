@@ -4,54 +4,49 @@
 <meta charset="UTF-8">
 <title>For Ritija 🤍🍪</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
 
+*{
+  box-sizing:border-box;
+}
+
 body{
   margin:0;
-  height:100vh;
+  min-height:100vh;
   background:linear-gradient(135deg,#ffffff,#f2f2f2,#e6e6e6);
   font-family:'Poppins',sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
   overflow:hidden;
   color:#444;
 }
 
-/* SLIDES */
-.slide{
-  position:absolute;
-  width:100%;
-  height:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  opacity:0;
-  pointer-events:none;
-  transition:1s;
-}
-.slide.active{
-  opacity:1;
-  pointer-events:auto;
-}
-
 /* CARD */
 .card{
+  width:100%;
+  max-width:600px;
+  max-height:90vh;
+  overflow-y:auto;
   background:rgba(255,255,255,.95);
-  border-radius:40px;
-  padding:80px 60px;
-  max-width:900px;
+  border-radius:30px;
+  padding:40px 30px;
   text-align:center;
-  box-shadow:0 40px 120px rgba(0,0,0,.15);
+  box-shadow:0 20px 60px rgba(0,0,0,.15);
 }
 
 h1{
-  font-size:3.3em;
+  font-size:2em;
   color:#6b4f4f;
 }
 
 .big{
-  font-size:1.9em;
-  line-height:2.2;
-  margin-top:35px;
+  font-size:1.1em;
+  line-height:1.8;
+  margin-top:20px;
 }
 
 .name{
@@ -61,65 +56,46 @@ h1{
 
 /* BUTTON */
 button{
-  margin-top:50px;
-  padding:22px 80px;
+  margin-top:30px;
+  padding:15px 40px;
   border:none;
-  border-radius:70px;
-  font-size:1.5em;
+  border-radius:50px;
+  font-size:1em;
   cursor:pointer;
   background:#8b5e5e;
   color:white;
   transition:.3s;
 }
+
 button:hover{
-  transform:scale(1.1);
+  transform:scale(1.05);
 }
 
-/* GIFT BOX */
-.box{
-  width:200px;
-  height:120px;
-  background:#6b4f4f;
-  margin:40px auto;
-  border-radius:20px;
-  transform-origin:bottom;
-  animation:openBox 2s forwards;
-}
-@keyframes openBox{
-  to{transform:rotateX(-60deg);}
-}
-
-/* CHOCOLATE */
-.choco{
-  font-size:7em;
-  cursor:pointer;
-  transition:.3s;
-}
-.choco:hover{
-  transform:scale(1.1);
-}
-
-/* FALLING COOKIES */
+/* Falling Cookies */
 .fall{
-  position:absolute;
+  position:fixed;
   top:-40px;
-  font-size:32px;
+  font-size:24px;
   animation:fall linear infinite;
+  pointer-events:none;
 }
+
 @keyframes fall{
   to{transform:translateY(110vh) rotate(360deg);}
 }
 
-/* HEART */
+/* Heart */
 #heart{
-  font-size:9em;
+  font-size:4em;
+  margin-top:15px;
   animation:beat 1s infinite;
 }
+
 @keyframes beat{
   0%{transform:scale(1);}
-  25%{transform:scale(1.35);}
+  25%{transform:scale(1.2);}
   50%{transform:scale(1);}
-  75%{transform:scale(1.2);}
+  75%{transform:scale(1.1);}
   100%{transform:scale(1);}
 }
 </style>
@@ -127,80 +103,29 @@ button:hover{
 
 <body>
 
-<!-- Slide 1 -->
-<div class="slide active">
-  <div class="card">
-    <h1>Happy Chocolate Day 🤍🍪</h1>
-    <p class="big">
-      Ritija 💖<br><br>
-      Today is all about sweetness…<br>
-      and there is nothing sweeter than you.
-    </p>
-    <button onclick="nextSlide()">Next 🤍</button>
-  </div>
-</div>
+<div class="card">
+  <h1>Happy Chocolate Day 🤍🍪</h1>
 
-<!-- Slide 2 -->
-<div class="slide">
-  <div class="card">
-    <p class="big">
-      Here is your chocolate — your favorite<br>
-      <span class="name">Hershey’s Cookies & Creme</span> 🤍🍪<br><br>
-      Because you deserve your favorite sweetness today.
-    </p>
-    <button onclick="nextSlide()">Open Your Gift 🎁</button>
-  </div>
-</div>
+  <p class="big">
+    Ritija 💖<br><br>
+    Here is your chocolate — your favorite 
+    <span class="name">Hershey’s Cookies & Creme</span> 🤍🍪<br><br>
+    Just like this chocolate, you are soft, sweet,
+    comforting, and completely irresistible.<br><br>
+    You make my days better just by being in them.<br><br>
+    I love you more than all the cookies in the world.
+  </p>
 
-<!-- Slide 3 Gift -->
-<div class="slide">
-  <div class="card">
-    <div class="box"></div>
-    <div class="choco" onclick="breakChoco()">🍫</div>
-    <p class="big">Tap the chocolate to unwrap your message 💌</p>
-    <div id="secret"></div>
-  </div>
-</div>
+  <button onclick="unwrap()">Unwrap It 🤍</button>
 
-<!-- Slide 4 Final -->
-<div class="slide">
-  <div class="card">
-    <div id="heart">❤️</div>
-    <h1 class="name">Ritija ❤️ Prinsu</h1>
-    <p class="big">
-      You are my favorite sweetness.<br><br>
-      Just like Cookies & Creme,<br>
-      you make everything better.<br><br>
-      I love you so much.<br><br>
-      Now don’t forget to share at least one bite with me 😏🍪
-    </p>
-  </div>
+  <div id="surprise"></div>
 </div>
-
-<audio id="music" loop>
-<source src="https://cdn.pixabay.com/audio/2023/03/02/audio_0c2c8d2f6c.mp3">
-</audio>
 
 <script>
-const slides=document.querySelectorAll(".slide");
-let current=0;
-const music=document.getElementById("music");
-
-function nextSlide(){
-  slides[current].classList.remove("active");
-  current++;
-  slides[current].classList.add("active");
-  if(current===1){
-    music.volume=0.4;
-    music.play();
-  }
-}
-
-function breakChoco(){
-  document.getElementById("secret").innerHTML =
-  "<p class='big'><span class='name'>Ritija 🤍</span><br><br>Here is your chocolate.<br><br>Soft like white chocolate.<br>Sweet like your smile.<br><br>You make my world better just by being in it.<br><br>I love you more than all the cookies in the world 🍪💖</p>";
+function unwrap(){
+  document.getElementById("surprise").innerHTML =
+  "<div id='heart'>❤️</div><p class='big'><span class='name'>Ritija ❤️ Prinsu</span><br><br>You are my favorite sweetness.<br><br>Now don’t forget to share at least one bite with me 😏🍪</p>";
   cookieRain();
-  setTimeout(()=>{nextSlide();},4000);
 }
 
 function cookieRain(){
@@ -212,7 +137,7 @@ function cookieRain(){
     c.style.animationDuration=(Math.random()*4+4)+'s';
     document.body.appendChild(c);
     setTimeout(()=>c.remove(),8000);
-  },250);
+  },300);
 }
 </script>
 
